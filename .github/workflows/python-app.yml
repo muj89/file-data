@@ -1,6 +1,8 @@
 name: Create JSON via Python
 
 on:
+  schedule:
+    - cron: '*/1 * * * *'  # تشغيل كل دقيقة
   workflow_dispatch:
 
 jobs:
@@ -16,11 +18,14 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt  # 👈 تثبيت المكتبات من الملف
+
       - name: Run Python script to create JSON
-        run: python time.py
+        run: python time.py  # أو أي سكربت عندك
 
       - name: Upload JSON file as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: data-json
-          path: data.json
+          name: json-files
+          path: '*.json'
