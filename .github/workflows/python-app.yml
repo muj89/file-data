@@ -1,7 +1,7 @@
 name: Create JSON via Python
 
 on:
-  workflow_dispatch:  # تشغيل يدوي من GitHub
+  workflow_dispatch:
 
 jobs:
   generate:
@@ -20,7 +20,7 @@ jobs:
         run: python create_json.py
 
       - name: Upload JSON file as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: data-json
           path: data.json
